@@ -1,0 +1,32 @@
+# Example Wikipedia URLs for Testing
+
+## Science & Technology
+https://en.wikipedia.org/wiki/Alan_Turing
+https://en.wikipedia.org/wiki/Machine_learning
+https://en.wikipedia.org/wiki/Artificial_intelligence
+https://en.wikipedia.org/wiki/Quantum_computing
+https://en.wikipedia.org/wiki/Photosynthesis
+
+## History & Culture
+https://en.wikipedia.org/wiki/Renaissance
+https://en.wikipedia.org/wiki/World_War_II
+https://en.wikipedia.org/wiki/Ancient_Egypt
+https://en.wikipedia.org/wiki/Industrial_Revolution
+
+## Geography & Nature
+https://en.wikipedia.org/wiki/Amazon_rainforest
+https://en.wikipedia.org/wiki/Mount_Everest
+https://en.wikipedia.org/wiki/Great_Barrier_Reef
+https://en.wikipedia.org/wiki/Sahara
+
+## Arts & Literature
+https://en.wikipedia.org/wiki/Shakespeare
+https://en.wikipedia.org/wiki/Mona_Lisa
+https://en.wikipedia.org/wiki/Beethoven
+https://en.wikipedia.org/wiki/Van_Gogh
+
+## Sports & Entertainment
+https://en.wikipedia.org/wiki/Olympic_Games
+https://en.wikipedia.org/wiki/Football
+https://en.wikipedia.org/wiki/Cinema
+https://en.wikipedia.org/wiki/Music

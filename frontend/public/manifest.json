@@ -1,0 +1,10 @@
+{
+  "short_name": "AI Wiki Quiz",
+  "name": "AI Wiki Quiz Generator - Intelligent Learning Platform",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "description": "AI-powered quiz generator that creates intelligent quizzes from Wikipedia articles"
+}
