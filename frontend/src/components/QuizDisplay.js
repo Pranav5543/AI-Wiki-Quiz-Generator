@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  RotateCcw, 
-  BookOpen, 
-  Users, 
-  MapPin, 
-  Building, 
+import {
+  RotateCcw,
+  BookOpen,
+  Users,
+  MapPin,
+  Building,
   Lightbulb,
   Clock,
   Target,
@@ -35,9 +35,9 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
     quizData.quiz.forEach((question, index) => {
       const selectedOptionIndex = userAnswers[index];
       if (selectedOptionIndex === undefined) return;
-      
+
       const selectedOption = question.options[selectedOptionIndex];
-      
+
       let isCorrect = false;
       if (question.correct_answer !== undefined) {
         isCorrect = selectedOptionIndex === question.correct_answer;
@@ -46,7 +46,7 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
         const cleanAns = question.answer.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
         isCorrect = cleanOpt === cleanAns || cleanOpt.includes(cleanAns) || cleanAns.includes(cleanOpt);
       }
-      
+
       if (isCorrect) correct++;
     });
     const percentage = Math.round((correct / quizData.quiz.length) * 100);
@@ -146,11 +146,10 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
                 setUserAnswers({});
                 setScore(null);
               }}
-              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
-                quizMode 
-                  ? 'bg-red-500 text-white hover:bg-red-600' 
-                  : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow'
-              }`}
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${quizMode
+                ? 'bg-red-500 text-white hover:bg-red-600'
+                : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow'
+                }`}
             >
               {quizMode ? 'Exit Quiz Mode' : 'Take Quiz'}
             </button>
@@ -176,7 +175,7 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
               </p>
               <div className="mt-2">
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${score.percentage}%` }}
                   ></div>
@@ -203,7 +202,7 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
               <div className="space-y-3">
                 {question.options.map((option, optionIndex) => {
                   const isSelected = userAnswers[index] === optionIndex;
-                  
+
                   // Backend might provide correct_answer as index (0-3) or answer as string
                   let isCorrect = false;
                   if (question.correct_answer !== undefined) {
@@ -214,12 +213,12 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
                     const cleanAns = question.answer.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
                     isCorrect = cleanOpt === cleanAns || cleanOpt.includes(cleanAns) || cleanAns.includes(cleanOpt);
                   }
-                  
+
                   let optionClass = "w-full text-left p-4 border rounded-lg transition-all duration-200 ";
-                  
+
                   if (quizMode && !shouldShowCorrect) {
-                    optionClass += isSelected 
-                      ? "border-blue-500 bg-blue-50 text-blue-900" 
+                    optionClass += isSelected
+                      ? "border-blue-500 bg-blue-50 text-blue-900"
                       : "border-gray-200 hover:border-gray-300 hover:bg-gray-50";
                   } else if (shouldShowCorrect) {
                     if (isCorrect) {

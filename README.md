@@ -41,6 +41,9 @@
 
 ## 🏗️ Architecture
 
+### 📐 System Architecture (MVC)
+![MVC Architecture of AI Wiki Quiz Generator](MVC%20(AI%20Quiz%20Generator).png)
+
 ### 🧩 Backend (FastAPI)
 - **Framework**: FastAPI with async/await support  
 - **Database**: PostgreSQL with SQLAlchemy ORM & Alembic migrations  
