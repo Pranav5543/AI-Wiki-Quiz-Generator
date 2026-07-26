@@ -33,9 +33,21 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
   const calculateScore = () => {
     let correct = 0;
     quizData.quiz.forEach((question, index) => {
-      if (userAnswers[index] === question.correct_answer) {
-        correct++;
+      const selectedOptionIndex = userAnswers[index];
+      if (selectedOptionIndex === undefined) return;
+      
+      const selectedOption = question.options[selectedOptionIndex];
+      
+      let isCorrect = false;
+      if (question.correct_answer !== undefined) {
+        isCorrect = selectedOptionIndex === question.correct_answer;
+      } else if (question.answer) {
+        const cleanOpt = selectedOption.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
+        const cleanAns = question.answer.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
+        isCorrect = cleanOpt === cleanAns || cleanOpt.includes(cleanAns) || cleanAns.includes(cleanOpt);
       }
+      
+      if (isCorrect) correct++;
     });
     const percentage = Math.round((correct / quizData.quiz.length) * 100);
     setScore({ correct, total: quizData.quiz.length, percentage });
@@ -134,10 +146,10 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
                 setUserAnswers({});
                 setScore(null);
               }}
-              className={`px-4 py-2 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all shadow-sm ${
                 quizMode 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-red-500 text-white hover:bg-red-600' 
+                  : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:shadow'
               }`}
             >
               {quizMode ? 'Exit Quiz Mode' : 'Take Quiz'}
@@ -191,7 +203,17 @@ const QuizDisplay = ({ quizData, onNewQuiz }) => {
               <div className="space-y-3">
                 {question.options.map((option, optionIndex) => {
                   const isSelected = userAnswers[index] === optionIndex;
-                  const isCorrect = optionIndex === question.correct_answer;
+                  
+                  // Backend might provide correct_answer as index (0-3) or answer as string
+                  let isCorrect = false;
+                  if (question.correct_answer !== undefined) {
+                    isCorrect = optionIndex === question.correct_answer;
+                  } else if (question.answer) {
+                    // Try exact match or substring match (ignoring A) prefix)
+                    const cleanOpt = option.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
+                    const cleanAns = question.answer.replace(/^[A-D]\)\s*/i, '').trim().toLowerCase();
+                    isCorrect = cleanOpt === cleanAns || cleanOpt.includes(cleanAns) || cleanAns.includes(cleanOpt);
+                  }
                   
                   let optionClass = "w-full text-left p-4 border rounded-lg transition-all duration-200 ";
                   
